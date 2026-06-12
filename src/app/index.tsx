@@ -8,24 +8,14 @@ import { Design } from "@/namespaces/Design";
 
 import {
   SplineSansMono_400Regular,
-  SplineSansMono_700Bold,
   useFonts,
 } from "@expo-google-fonts/spline-sans-mono";
 
-import {
-  SourceSerif4_400Regular,
-  SourceSerif4_600SemiBold,
-} from "@expo-google-fonts/source-serif-4";
-
-import { Inter_400Regular, Inter_600SemiBold } from "@expo-google-fonts/inter";
+import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 
 export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
     SplineSansMono_400Regular,
-    SplineSansMono_700Bold, // load only the weights you use
-    SourceSerif4_400Regular,
-    SourceSerif4_600SemiBold,
-    Inter_400Regular, // system-ui equivalent for UI/body text
     Inter_600SemiBold,
   });
 
@@ -57,14 +47,14 @@ const styles = StyleSheet.create({
     maxWidth: MaxContentWidth,
   },
   subTitle: {
-    fontFamily: "SplineSansMono_400Regular",
+    fontFamily: Design.familyFont.splineRegular,
     fontSize: 16,
     color: Design.color.darkGold,
     marginTop: 24,
     letterSpacing: 2,
   },
   title: {
-    fontFamily: "Inter_600SemiBold",
+    fontFamily: Design.familyFont.interSemiBold,
     fontSize: Design.fontSize.xxLarge,
     color: Design.color.blue,
     letterSpacing: -2.5,

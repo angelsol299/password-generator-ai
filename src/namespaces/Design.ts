@@ -1,6 +1,11 @@
 export namespace Design {
+  export const familyFont = {
+    splineRegular: "SplineSansMono_400Regular",
+    interSemiBold: "Inter_600SemiBold",
+  };
+
   export const fontSize = {
-    xxLarge: 48,
+    xxLarge: 42,
     xLarge: 32,
     large: 24,
     medium: 16,
@@ -12,6 +17,7 @@ export namespace Design {
     beige: "#f2e9df",
     darkGold: "#a2917f",
     blue: "#5e9bd1",
+    lightBlue: "#86a7c7",
   };
 
   export const space = {
