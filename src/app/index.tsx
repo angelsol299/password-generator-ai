@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedView } from "@/components/themed-view";
@@ -26,6 +26,8 @@ export default function HomeScreen() {
         <Text style={styles.subTitle}>Secure Generator</Text>
         <Text style={styles.title}>Password</Text>
         <Card>
+          <Text style={styles.password}>{"8213jhsj032190][pqwe"}</Text>
+          <View style={styles.divider} />
           <Text>hellow world</Text>
         </Card>
       </SafeAreaView>
@@ -58,5 +60,13 @@ const styles = StyleSheet.create({
     fontSize: Design.fontSize.xxLarge,
     color: Design.color.blue,
     letterSpacing: -2.5,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: Design.color.lightGray,
+  },
+  password: {
+    fontSize: Design.fontSize.large,
+    marginBottom: 42,
   },
 });

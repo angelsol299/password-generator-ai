@@ -18,6 +18,8 @@ export namespace Design {
     darkGold: "#a2917f",
     blue: "#5e9bd1",
     lightBlue: "#86a7c7",
+    black: "#000000",
+    lightGray: "#2c252114",
   };
 
   export const space = {

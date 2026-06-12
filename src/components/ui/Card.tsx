@@ -1,7 +1,9 @@
+import { PropsWithChildren } from "react";
+
 import { Design } from "@/namespaces/Design";
 import { StyleSheet, View } from "react-native";
 
-export const Card = ({ children }) => {
+export const Card = ({ children }: PropsWithChildren) => {
   return <View style={styles.container}>{children}</View>;
 };
 
