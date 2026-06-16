@@ -11,6 +11,7 @@ import {
 } from "@expo-google-fonts/spline-sans-mono";
 
 import { PasswordCard } from "@/components/PasswordCard";
+import { PasswordScore } from "@/components/PasswordScore";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 
 export default function HomeScreen() {
@@ -26,6 +27,7 @@ export default function HomeScreen() {
         <Text style={styles.subTitle}>Secure Generator</Text>
         <Text style={styles.title}>Password</Text>
         <PasswordCard />
+        <PasswordScore score={"Excellent"} />
       </SafeAreaView>
     </ThemedView>
   );
@@ -45,14 +47,14 @@ const styles = StyleSheet.create({
     maxWidth: MaxContentWidth,
   },
   subTitle: {
-    fontFamily: Design.familyFont.splineRegular,
+    fontFamily: Design.fontFamily.splineRegular,
     fontSize: 16,
     color: Design.color.darkGold,
     marginTop: 24,
     letterSpacing: 2,
   },
   title: {
-    fontFamily: Design.familyFont.interSemiBold,
+    fontFamily: Design.fontFamily.interSemiBold,
     fontSize: Design.fontSize.xxLarge,
     color: Design.color.blue,
     letterSpacing: -2.5,

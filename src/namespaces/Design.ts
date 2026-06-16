@@ -1,5 +1,5 @@
 export namespace Design {
-  export const familyFont = {
+  export const fontFamily = {
     splineRegular: "SplineSansMono_400Regular",
     interSemiBold: "Inter_600SemiBold",
   };
@@ -20,6 +20,7 @@ export namespace Design {
     lightBlue: "#86a7c7",
     black: "#000000",
     lightGray: "#2c252114",
+    green: "#5e8a5e",
   };
 
   export const space = {
