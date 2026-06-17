@@ -17,6 +17,7 @@ export const PasswordScore = ({ score }: { score: string }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: Design.space.medium,
     flexDirection: "column",
     gap: Design.space.medium,
   },

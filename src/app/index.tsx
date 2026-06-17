@@ -12,7 +12,10 @@ import {
 
 import { PasswordCard } from "@/components/PasswordCard";
 import { PasswordScore } from "@/components/PasswordScore";
+import { SliderComponent } from "@/components/SliderComponent";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
+import { useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
@@ -20,16 +23,32 @@ export default function HomeScreen() {
     Inter_600SemiBold,
   });
 
+  const [passwordLength, setPasswordLength] = useState<number>(0);
+
+  const passwordLengthHandler = (value: number) => {
+    console.log(value);
+
+    const wholeValue = Math.floor(value);
+
+    setPasswordLength(wholeValue);
+  };
+
   if (!fontsLoaded) return null;
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <Text style={styles.subTitle}>Secure Generator</Text>
-        <Text style={styles.title}>Password</Text>
-        <PasswordCard />
-        <PasswordScore score={"Excellent"} />
-      </SafeAreaView>
-    </ThemedView>
+    <GestureHandlerRootView>
+      <ThemedView style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+          <Text style={styles.subTitle}>Secure Generator</Text>
+          <Text style={styles.title}>Password</Text>
+          <PasswordCard />
+          <PasswordScore score={"Excellent"} />
+          <SliderComponent
+            passwordLengthHandler={passwordLengthHandler}
+            passwordLength={passwordLength}
+          />
+        </SafeAreaView>
+      </ThemedView>
+    </GestureHandlerRootView>
   );
 }
 
