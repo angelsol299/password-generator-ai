@@ -1,9 +1,16 @@
 import { Design } from "@/namespaces/Design";
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export const Button = ({ text }: { text: string }) => {
+export const Button = ({
+  text,
+  onPress,
+}: {
+  text: string;
+  onPress: () => void;
+}) => {
   return (
     <Pressable
+      onPress={onPress}
       style={({ pressed }) => [styles.container, pressed && styles.pressed]}
     >
       <Text style={styles.text}>{text}</Text>

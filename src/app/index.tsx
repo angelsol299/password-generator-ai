@@ -17,6 +17,7 @@ import { PasswordCard } from "@/components/PasswordCard";
 import { PasswordConditionsCard } from "@/components/PasswordConditionsCard";
 import { PasswordScore } from "@/components/PasswordScore";
 import { SliderComponent } from "@/components/SliderComponent";
+import { generatePasswordFunction } from "@/lib/generatePasswordFunction";
 import { ConditionsState } from "@/types";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { useState } from "react";
@@ -48,6 +49,17 @@ export default function HomeScreen() {
 
   const insets = useSafeAreaInsets();
 
+  const generatePassword = () => {
+    console.log(
+      generatePasswordFunction({
+        length: 10,
+        upperCase: true,
+        numbers: true,
+        symbols: true,
+      }),
+    );
+  };
+
   if (!fontsLoaded) return null;
   return (
     <GestureHandlerRootView>
@@ -74,7 +86,7 @@ export default function HomeScreen() {
               conditionsValues={conditionsValues}
               setConditionsValues={setConditionsValues}
             />
-            <Button text={"Generate new password"} />
+            <Button onPress={generatePassword} text={"Generate new password"} />
           </ScrollView>
         </SafeAreaView>
       </ThemedView>
