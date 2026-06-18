@@ -1,5 +1,8 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 import { ThemedView } from "@/components/themed-view";
 import { MaxContentWidth, Spacing } from "@/constants/theme";
@@ -35,13 +38,18 @@ export default function HomeScreen() {
     setPasswordLength(wholeValue);
   };
 
+  const insets = useSafeAreaInsets();
+
   if (!fontsLoaded) return null;
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemedView style={styles.container}>
         <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
           <ScrollView
-            contentContainerStyle={styles.scrollViewContainer}
+            contentContainerStyle={[
+              styles.scrollViewContainer,
+              { paddingBottom: insets.bottom + Design.space.small },
+            ]}
             showsVerticalScrollIndicator={false}
           >
             <Text style={styles.subTitle}>Secure Generator</Text>
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: Design.fontFamily.splineRegular,
-    fontSize: 16,
+    fontSize: Design.fontSize.medium,
     color: Design.color.darkGold,
     marginTop: 24,
     letterSpacing: 2,
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
     letterSpacing: -2.5,
   },
   scrollViewContainer: {
-    flex: 1,
+    flexGrow: 1,
     gap: Design.space.large,
   },
 });
