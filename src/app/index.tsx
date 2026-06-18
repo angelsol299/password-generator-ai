@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#f2e9df",
+    backgroundColor: Design.color.beige,
   },
   safeArea: {
     flex: 1,

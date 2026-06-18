@@ -3,7 +3,9 @@ import { Pressable, StyleSheet, Text } from "react-native";
 
 export const Button = ({ text }: { text: string }) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={({ pressed }) => [styles.container, pressed && styles.pressed]}
+    >
       <Text style={styles.text}>{text}</Text>
     </Pressable>
   );
@@ -20,5 +22,8 @@ const styles = StyleSheet.create({
     color: Design.color.white,
     fontFamily: Design.fontFamily.interSemiBold,
     fontSize: Design.fontSize.medium,
+  },
+  pressed: {
+    backgroundColor: Design.color.lightBlue,
   },
 });
