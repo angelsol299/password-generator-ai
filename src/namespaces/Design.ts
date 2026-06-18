@@ -30,6 +30,7 @@ export namespace Design {
     large: 24,
     medium: 16,
     small: 8,
+    xSmall: 4,
   };
 
   export const borderRadius = 15;

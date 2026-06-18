@@ -19,8 +19,33 @@ export const PasswordConditionsCard = () => {
   return (
     <Card>
       <View style={styles.container}>
-        <SwitchComponent setValueFunc={setValueFunc} values={values} />
+        <SwitchComponent
+          setValueFunc={setValueFunc}
+          values={values}
+          title={"Uppercase"}
+          subTitle={"A-Z"}
+        />
         <View style={styles.divider} />
+        <SwitchComponent
+          setValueFunc={setValueFunc}
+          values={values}
+          title={"Lowercase"}
+          subTitle={"a-z"}
+        />
+        <View style={styles.divider} />
+        <SwitchComponent
+          setValueFunc={setValueFunc}
+          values={values}
+          title={"Numbers"}
+          subTitle={"0-9"}
+        />
+        <View style={styles.divider} />
+        <SwitchComponent
+          setValueFunc={setValueFunc}
+          values={values}
+          title={"Symbols"}
+          subTitle={"!&^$"}
+        />
         <View />
       </View>
     </Card>

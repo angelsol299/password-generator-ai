@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
+import { MaxContentWidth, Spacing } from "@/constants/theme";
 import { Design } from "@/namespaces/Design";
 
 import {
@@ -36,10 +36,13 @@ export default function HomeScreen() {
 
   if (!fontsLoaded) return null;
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemedView style={styles.container}>
-        <SafeAreaView style={styles.safeArea}>
-          <View style={{ gap: 16 }}>
+        <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+          <ScrollView
+            contentContainerStyle={styles.scrollViewContainer}
+            showsVerticalScrollIndicator={false}
+          >
             <Text style={styles.subTitle}>Secure Generator</Text>
             <View>
               <Text style={styles.title}>Password</Text>
@@ -51,7 +54,7 @@ export default function HomeScreen() {
               passwordLength={passwordLength}
             />
             <PasswordConditionsCard />
-          </View>
+          </ScrollView>
         </SafeAreaView>
       </ThemedView>
     </GestureHandlerRootView>
@@ -68,7 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: Spacing.four,
     gap: Design.space.small,
-    paddingBottom: BottomTabInset + Spacing.three,
     maxWidth: MaxContentWidth,
   },
   subTitle: {
@@ -83,5 +85,9 @@ const styles = StyleSheet.create({
     fontSize: Design.fontSize.xxLarge,
     color: Design.color.blue,
     letterSpacing: -2.5,
+  },
+  scrollViewContainer: {
+    flex: 1,
+    gap: Design.space.large,
   },
 });

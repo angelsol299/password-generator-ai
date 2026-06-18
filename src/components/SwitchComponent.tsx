@@ -5,17 +5,21 @@ import { ValueState } from "./PasswordConditionsCard";
 interface SwitchComponentProps {
   setValueFunc: (val: boolean) => void;
   values: ValueState;
+  title: string;
+  subTitle: string;
 }
 
 export const SwitchComponent = ({
   setValueFunc,
   values,
+  title,
+  subTitle,
 }: SwitchComponentProps) => {
   return (
     <View style={styles.upperCaseContainer}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Uppercase</Text>
-        <Text style={styles.subTitle}>A-Z</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subTitle}>{subTitle}</Text>
       </View>
       <Switch
         value={values.upperCase}
