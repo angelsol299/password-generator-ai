@@ -59,7 +59,6 @@ export const SliderComponent = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Design.space.medium,
     gap: Design.space.medium,
   },
   text: {

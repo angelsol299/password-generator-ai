@@ -42,7 +42,7 @@ export default function HomeScreen() {
 
   if (!fontsLoaded) return null;
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView>
       <ThemedView style={styles.container}>
         <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
           <ScrollView
@@ -53,15 +53,15 @@ export default function HomeScreen() {
             showsVerticalScrollIndicator={false}
           >
             <Text style={styles.subTitle}>Secure Generator</Text>
-            <View>
-              <Text style={styles.title}>Password</Text>
-            </View>
+            <Text style={styles.title}>Password</Text>
             <PasswordCard />
             <PasswordScore score={"Excellent"} />
-            <SliderComponent
-              passwordLengthHandler={passwordLengthHandler}
-              passwordLength={passwordLength}
-            />
+            <View style={styles.sliderWrapper}>
+              <SliderComponent
+                passwordLengthHandler={passwordLengthHandler}
+                passwordLength={passwordLength}
+              />
+            </View>
             <PasswordConditionsCard />
             <Button text={"Generate new password"} />
           </ScrollView>
@@ -95,9 +95,13 @@ const styles = StyleSheet.create({
     fontSize: Design.fontSize.xxLarge,
     color: Design.color.blue,
     letterSpacing: -2.5,
+    lineHeight: Design.fontSize.xxLarge,
   },
   scrollViewContainer: {
     flexGrow: 1,
-    gap: Design.space.large,
+    gap: Design.space.medium,
+  },
+  sliderWrapper: {
+    paddingBottom: Design.space.small,
   },
 });
