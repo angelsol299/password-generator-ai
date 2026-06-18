@@ -1,17 +1,16 @@
 import { Design } from "@/namespaces/Design";
 import { StyleSheet, Switch, Text, View } from "react-native";
-import { ValueState } from "./PasswordConditionsCard";
 
 interface SwitchComponentProps {
   setValueFunc: (val: boolean) => void;
-  values: ValueState;
+  value: boolean;
   title: string;
   subTitle: string;
 }
 
 export const SwitchComponent = ({
   setValueFunc,
-  values,
+  value,
   title,
   subTitle,
 }: SwitchComponentProps) => {
@@ -22,7 +21,7 @@ export const SwitchComponent = ({
         <Text style={styles.subTitle}>{subTitle}</Text>
       </View>
       <Switch
-        value={values.upperCase}
+        value={value}
         onValueChange={setValueFunc}
         trackColor={{ true: Design.color.blue }}
       />

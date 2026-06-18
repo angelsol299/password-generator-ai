@@ -6,43 +6,64 @@ import { Card } from "./ui/Card";
 
 export interface ValueState {
   upperCase: boolean;
+  lowerCase: boolean;
+  numbers: boolean;
+  symbols: boolean;
 }
 
-export const PasswordConditionsCard = () => {
-  const [values, setValues] = useState<ValueState>({ upperCase: false });
+const initialState = {
+  upperCase: false,
+  lowerCase: false,
+  numbers: false,
+  symbols: false,
+};
 
-  const setValueFunc = (val: boolean) => {
-    console.log({ val });
-    setValues((prev) => ({ ...values, upperCase: !prev.upperCase }));
+export const PasswordConditionsCard = () => {
+  const [values, setValues] = useState<ValueState>(initialState);
+
+  const setUpperCase = (val: boolean) => {
+    setValues((prev) => ({ ...prev, upperCase: val }));
+  };
+
+  const setLowerCase = (val: boolean) => {
+    setValues((prev) => ({ ...prev, lowerCase: val }));
+  };
+
+  const setNumbers = (val: boolean) => {
+    setValues((prev) => ({ ...prev, numbers: val }));
+  };
+
+  const setSymbols = (val: boolean) => {
+    setValues((prev) => ({ ...prev, symbols: val }));
   };
 
   return (
     <Card>
       <View style={styles.container}>
         <SwitchComponent
-          setValueFunc={setValueFunc}
-          values={values}
+          setValueFunc={(val) => setUpperCase(val)}
+          value={values.upperCase}
           title={"Uppercase"}
           subTitle={"A-Z"}
         />
         <View style={styles.divider} />
         <SwitchComponent
-          setValueFunc={setValueFunc}
-          values={values}
+          setValueFunc={(val) => setLowerCase(val)}
+          value={values.lowerCase}
           title={"Lowercase"}
           subTitle={"a-z"}
         />
         <View style={styles.divider} />
         <SwitchComponent
-          setValueFunc={setValueFunc}
-          values={values}
+          setValueFunc={(val) => setNumbers(val)}
+          value={values.numbers}
           title={"Numbers"}
           subTitle={"0-9"}
         />
         <View style={styles.divider} />
         <SwitchComponent
-          setValueFunc={setValueFunc}
-          values={values}
+          setValueFunc={(val) => setSymbols(val)}
+          value={values.symbols}
           title={"Symbols"}
           subTitle={"!&^$"}
         />
