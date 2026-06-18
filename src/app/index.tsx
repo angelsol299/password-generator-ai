@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedView } from "@/components/themed-view";
@@ -11,6 +11,7 @@ import {
 } from "@expo-google-fonts/spline-sans-mono";
 
 import { PasswordCard } from "@/components/PasswordCard";
+import { PasswordConditionsCard } from "@/components/PasswordConditionsCard";
 import { PasswordScore } from "@/components/PasswordScore";
 import { SliderComponent } from "@/components/SliderComponent";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
@@ -38,14 +39,19 @@ export default function HomeScreen() {
     <GestureHandlerRootView>
       <ThemedView style={styles.container}>
         <SafeAreaView style={styles.safeArea}>
-          <Text style={styles.subTitle}>Secure Generator</Text>
-          <Text style={styles.title}>Password</Text>
-          <PasswordCard />
-          <PasswordScore score={"Excellent"} />
-          <SliderComponent
-            passwordLengthHandler={passwordLengthHandler}
-            passwordLength={passwordLength}
-          />
+          <View style={{ gap: 16 }}>
+            <Text style={styles.subTitle}>Secure Generator</Text>
+            <View>
+              <Text style={styles.title}>Password</Text>
+            </View>
+            <PasswordCard />
+            <PasswordScore score={"Excellent"} />
+            <SliderComponent
+              passwordLengthHandler={passwordLengthHandler}
+              passwordLength={passwordLength}
+            />
+            <PasswordConditionsCard />
+          </View>
         </SafeAreaView>
       </ThemedView>
     </GestureHandlerRootView>
@@ -61,7 +67,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingHorizontal: Spacing.four,
-    gap: Design.space.medium,
+    gap: Design.space.small,
     paddingBottom: BottomTabInset + Spacing.three,
     maxWidth: MaxContentWidth,
   },

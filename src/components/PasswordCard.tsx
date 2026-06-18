@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     transform: [{ rotate: "45deg" }],
   },
   iconsContainer: {
-    gap: Design.space.medium,
-    paddingTop: Design.space.large,
+    gap: Design.space.small,
+    paddingTop: Design.space.medium,
     width: "100%",
     flexDirection: "row",
     alignItems: "center",

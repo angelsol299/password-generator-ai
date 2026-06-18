@@ -17,11 +17,11 @@ export const PasswordScore = ({ score }: { score: string }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Design.space.medium,
+    paddingTop: Design.space.small,
     flexDirection: "column",
-    gap: Design.space.medium,
+    gap: Design.space.xSmall,
   },
-  containerLines: { flexDirection: "row", gap: Design.space.small },
+  containerLines: { flexDirection: "row", gap: Design.space.xSmall },
   line: {
     flex: 1,
     height: 5,

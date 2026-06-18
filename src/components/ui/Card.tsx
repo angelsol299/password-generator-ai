@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: Design.color.white,
     borderRadius: Design.borderRadius,
     width: "100%",
-    paddingVertical: Design.space.large,
-    paddingHorizontal: Design.space.large,
+    paddingVertical: Design.space.medium,
+    paddingHorizontal: Design.space.medium,
   },
 });

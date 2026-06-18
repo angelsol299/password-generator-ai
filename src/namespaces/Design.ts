@@ -25,9 +25,11 @@ export namespace Design {
   };
 
   export const space = {
-    large: 16,
-    medium: 8,
-    small: 4,
+    xxLarge: 48,
+    xLarge: 36,
+    large: 24,
+    medium: 16,
+    small: 8,
   };
 
   export const borderRadius = 15;
