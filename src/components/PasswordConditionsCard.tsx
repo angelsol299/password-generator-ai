@@ -1,14 +1,13 @@
 import { Design } from "@/namespaces/Design";
-import { useState } from "react";
+import { ConditionsState } from "@/types";
+import { Dispatch, SetStateAction } from "react";
 import { StyleSheet, View } from "react-native";
 import { SwitchComponent } from "./SwitchComponent";
 import { Card } from "./ui/Card";
 
-export interface ValueState {
-  upperCase: boolean;
-  lowerCase: boolean;
-  numbers: boolean;
-  symbols: boolean;
+interface PasswordConditionsCardProps {
+  conditionsValues: ConditionsState;
+  setConditionsValues: Dispatch<SetStateAction<ConditionsState>>;
 }
 
 const initialState = {
@@ -18,23 +17,24 @@ const initialState = {
   symbols: false,
 };
 
-export const PasswordConditionsCard = () => {
-  const [values, setValues] = useState<ValueState>(initialState);
-
+export const PasswordConditionsCard = ({
+  conditionsValues,
+  setConditionsValues,
+}: PasswordConditionsCardProps) => {
   const setUpperCase = (val: boolean) => {
-    setValues((prev) => ({ ...prev, upperCase: val }));
+    setConditionsValues((prev) => ({ ...prev, upperCase: val }));
   };
 
   const setLowerCase = (val: boolean) => {
-    setValues((prev) => ({ ...prev, lowerCase: val }));
+    setConditionsValues((prev) => ({ ...prev, lowerCase: val }));
   };
 
   const setNumbers = (val: boolean) => {
-    setValues((prev) => ({ ...prev, numbers: val }));
+    setConditionsValues((prev) => ({ ...prev, numbers: val }));
   };
 
   const setSymbols = (val: boolean) => {
-    setValues((prev) => ({ ...prev, symbols: val }));
+    setConditionsValues((prev) => ({ ...prev, symbols: val }));
   };
 
   return (
@@ -42,28 +42,28 @@ export const PasswordConditionsCard = () => {
       <View style={styles.container}>
         <SwitchComponent
           setValueFunc={(val) => setUpperCase(val)}
-          value={values.upperCase}
+          value={conditionsValues.upperCase}
           title={"Uppercase"}
           subTitle={"A-Z"}
         />
         <View style={styles.divider} />
         <SwitchComponent
           setValueFunc={(val) => setLowerCase(val)}
-          value={values.lowerCase}
+          value={conditionsValues.lowerCase}
           title={"Lowercase"}
           subTitle={"a-z"}
         />
         <View style={styles.divider} />
         <SwitchComponent
           setValueFunc={(val) => setNumbers(val)}
-          value={values.numbers}
+          value={conditionsValues.numbers}
           title={"Numbers"}
           subTitle={"0-9"}
         />
         <View style={styles.divider} />
         <SwitchComponent
           setValueFunc={(val) => setSymbols(val)}
-          value={values.symbols}
+          value={conditionsValues.symbols}
           title={"Symbols"}
           subTitle={"!&^$"}
         />

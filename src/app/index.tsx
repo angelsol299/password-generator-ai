@@ -17,10 +17,18 @@ import { PasswordCard } from "@/components/PasswordCard";
 import { PasswordConditionsCard } from "@/components/PasswordConditionsCard";
 import { PasswordScore } from "@/components/PasswordScore";
 import { SliderComponent } from "@/components/SliderComponent";
+import { ConditionsState } from "@/types";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Button } from "../components/ui/Button";
+
+const initialState = {
+  upperCase: false,
+  lowerCase: false,
+  numbers: false,
+  symbols: false,
+};
 
 export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
@@ -29,10 +37,10 @@ export default function HomeScreen() {
   });
 
   const [passwordLength, setPasswordLength] = useState<number>(0);
+  const [conditionsValues, setConditionsValues] =
+    useState<ConditionsState>(initialState);
 
   const passwordLengthHandler = (value: number) => {
-    console.log(value);
-
     const wholeValue = Math.floor(value);
 
     setPasswordLength(wholeValue);
@@ -62,7 +70,10 @@ export default function HomeScreen() {
                 passwordLength={passwordLength}
               />
             </View>
-            <PasswordConditionsCard />
+            <PasswordConditionsCard
+              conditionsValues={conditionsValues}
+              setConditionsValues={setConditionsValues}
+            />
             <Button text={"Generate new password"} />
           </ScrollView>
         </SafeAreaView>
