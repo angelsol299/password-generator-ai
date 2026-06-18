@@ -17,6 +17,7 @@ import { SliderComponent } from "@/components/SliderComponent";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Button } from "../components/ui/Button";
 
 export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
@@ -54,6 +55,7 @@ export default function HomeScreen() {
               passwordLength={passwordLength}
             />
             <PasswordConditionsCard />
+            <Button text={"Generate new password"} />
           </ScrollView>
         </SafeAreaView>
       </ThemedView>
