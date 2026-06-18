@@ -1,6 +1,8 @@
 import { Design } from "@/namespaces/Design";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
+
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -11,10 +13,18 @@ import { Card } from "./ui/Card";
 
 export const PasswordCard = () => {
   const rotationVal = useSharedValue(45);
+  const [wasCopied, setWasCopied] = useState<boolean>(false);
 
-  const refreshHandle = () => {
+  const handleRefresh = () => {
     console.log("PRESSED");
     rotationVal.value = withTiming(rotationVal.value + 360, { duration: 300 });
+  };
+
+  const handleCopy = () => {
+    setWasCopied((prev) => !prev);
+    setTimeout(() => {
+      setWasCopied((prev) => !prev);
+    }, 700);
   };
 
   const animatedStyles = useAnimatedStyle(() => ({
@@ -26,14 +36,22 @@ export const PasswordCard = () => {
       <Text style={styles.password}>{"8213jhsj032190][pqwe"}</Text>
       <View style={styles.divider} />
       <View style={styles.iconsContainer}>
-        <Pressable onPress={refreshHandle} style={styles.iconContainer}>
+        <Pressable onPress={handleRefresh} style={styles.iconContainer}>
           <Animated.View style={animatedStyles}>
-            <Ionicons name="refresh" size={18} color="black" />
+            <Ionicons
+              name="refresh"
+              size={18}
+              color={Design.color.lightBrown}
+            />
           </Animated.View>
         </Pressable>
-        <View style={styles.iconContainer}>
-          <Feather name="copy" size={18} color="black" />
-        </View>
+        <Pressable onPress={handleCopy} style={styles.iconContainer}>
+          {wasCopied ? (
+            <Feather name="check" size={18} color="green" />
+          ) : (
+            <Feather name="copy" size={18} color={Design.color.lightBrown} />
+          )}
+        </Pressable>
       </View>
     </Card>
   );
