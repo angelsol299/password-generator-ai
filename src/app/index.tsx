@@ -68,6 +68,10 @@ export default function HomeScreen() {
     );
   };
 
+  const isButtonDisabled = (conditionsValues: ConditionsState) => {
+    return Object.values(conditionsValues).every((item) => !item);
+  };
+
   if (!fontsLoaded) return null;
   return (
     <GestureHandlerRootView>
@@ -97,7 +101,7 @@ export default function HomeScreen() {
             <Button
               onPress={generatePassword}
               text={"Generate new password"}
-              disabled={true}
+              disabled={isButtonDisabled(conditionsValues)}
             />
           </ScrollView>
         </SafeAreaView>
