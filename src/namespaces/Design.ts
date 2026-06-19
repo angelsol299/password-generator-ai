@@ -22,6 +22,8 @@ export namespace Design {
     lightGray: "#2c252114",
     green: "#5e8a5e",
     lightBrown: "#6e5f54",
+    gray: "#DBDBDB",
+    darkGray: "#808080",
   };
 
   export const space = {

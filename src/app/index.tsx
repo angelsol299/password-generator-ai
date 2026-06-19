@@ -94,7 +94,11 @@ export default function HomeScreen() {
               conditionsValues={conditionsValues}
               setConditionsValues={setConditionsValues}
             />
-            <Button onPress={generatePassword} text={"Generate new password"} />
+            <Button
+              onPress={generatePassword}
+              text={"Generate new password"}
+              disabled={true}
+            />
           </ScrollView>
         </SafeAreaView>
       </ThemedView>

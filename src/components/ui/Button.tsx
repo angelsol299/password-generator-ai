@@ -1,19 +1,24 @@
 import { Design } from "@/namespaces/Design";
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export const Button = ({
-  text,
-  onPress,
-}: {
+interface ButtonProps {
   text: string;
   onPress: () => void;
-}) => {
+  disabled: boolean;
+}
+
+export const Button = ({ text, onPress, disabled }: ButtonProps) => {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.container, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        styles.container,
+        pressed && styles.pressed,
+        disabled && styles.disabled,
+      ]}
+      disabled={disabled}
     >
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, disabled && styles.textDisabled]}>{text}</Text>
     </Pressable>
   );
 };
@@ -30,7 +35,13 @@ const styles = StyleSheet.create({
     fontFamily: Design.fontFamily.interSemiBold,
     fontSize: Design.fontSize.medium,
   },
+  textDisabled: {
+    color: Design.color.darkGray,
+  },
   pressed: {
     backgroundColor: Design.color.lightBlue,
+  },
+  disabled: {
+    backgroundColor: Design.color.gray,
   },
 });
