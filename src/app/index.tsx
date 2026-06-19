@@ -20,13 +20,13 @@ import { SliderComponent } from "@/components/SliderComponent";
 import { generatePasswordFunction } from "@/lib/generatePasswordFunction";
 import { ConditionsState } from "@/types";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Button } from "../components/ui/Button";
 
 const initialState = {
   upperCase: false,
-  lowerCase: false,
+  lowerCase: true,
   numbers: false,
   symbols: false,
 };
@@ -42,13 +42,22 @@ export default function HomeScreen() {
     useState<ConditionsState>(initialState);
   const [passwordGen, setPasswordGen] = useState<string>("");
 
+  const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    setPasswordGen(
+      generatePasswordFunction({
+        length: 10,
+        ...conditionsValues,
+      }),
+    );
+  }, []);
+
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);
 
     setPasswordLength(wholeValue);
   };
-
-  const insets = useSafeAreaInsets();
 
   const generatePassword = () => {
     setPasswordGen(
