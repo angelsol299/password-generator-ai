@@ -10,6 +10,7 @@ export namespace Design {
     large: 24,
     medium: 16,
     small: 12,
+    xSmall: 8,
   };
 
   export const color = {

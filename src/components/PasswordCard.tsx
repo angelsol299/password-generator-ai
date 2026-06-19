@@ -31,27 +31,40 @@ export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
     transform: [{ rotate: `${rotationVal.value}deg` }],
   }));
 
+  const smallerPasswordSize = passwordGen.length > 25;
+
   return (
     <Card>
-      <Text style={styles.password}>{passwordGen}</Text>
-      <View style={styles.divider} />
-      <View style={styles.iconsContainer}>
-        <Pressable onPress={handleRefresh} style={styles.iconContainer}>
-          <Animated.View style={animatedStyles}>
-            <Ionicons
-              name="refresh"
-              size={18}
-              color={Design.color.lightBrown}
-            />
-          </Animated.View>
-        </Pressable>
-        <Pressable onPress={handleCopy} style={styles.iconContainer}>
-          {wasCopied ? (
-            <Feather name="check" size={18} color="green" />
-          ) : (
-            <Feather name="copy" size={18} color={Design.color.lightBrown} />
-          )}
-        </Pressable>
+      <View style={styles.container}>
+        <View style={styles.passwordContainer}>
+          <Text
+            style={[
+              styles.password,
+              smallerPasswordSize && styles.largerPassword,
+            ]}
+          >
+            {passwordGen}
+          </Text>
+        </View>
+        <View style={styles.divider} />
+        <View style={styles.iconsContainer}>
+          <Pressable onPress={handleRefresh} style={styles.iconContainer}>
+            <Animated.View style={animatedStyles}>
+              <Ionicons
+                name="refresh"
+                size={18}
+                color={Design.color.lightBrown}
+              />
+            </Animated.View>
+          </Pressable>
+          <Pressable onPress={handleCopy} style={styles.iconContainer}>
+            {wasCopied ? (
+              <Feather name="check" size={18} color="green" />
+            ) : (
+              <Feather name="copy" size={18} color={Design.color.lightBrown} />
+            )}
+          </Pressable>
+        </View>
       </View>
     </Card>
   );
@@ -83,5 +96,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-end",
+  },
+  largerPassword: {
+    fontSize: Design.fontSize.small + Design.fontSize.xSmall,
+  },
+  passwordContainer: {
+    flex: 1,
+  },
+  container: {
+    height: 130,
   },
 });
