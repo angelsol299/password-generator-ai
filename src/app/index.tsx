@@ -40,6 +40,7 @@ export default function HomeScreen() {
   const [passwordLength, setPasswordLength] = useState<number>(0);
   const [conditionsValues, setConditionsValues] =
     useState<ConditionsState>(initialState);
+  const [passwordGen, setPasswordGen] = useState<string>("");
 
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);
@@ -50,12 +51,10 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
 
   const generatePassword = () => {
-    console.log(
+    setPasswordGen(
       generatePasswordFunction({
         length: 10,
-        upperCase: true,
-        numbers: true,
-        symbols: true,
+        ...conditionsValues,
       }),
     );
   };
@@ -74,7 +73,7 @@ export default function HomeScreen() {
           >
             <Text style={styles.subTitle}>Secure Generator</Text>
             <Text style={styles.title}>Password</Text>
-            <PasswordCard />
+            <PasswordCard passwordGen={passwordGen} />
             <PasswordScore score={"Excellent"} />
             <View style={styles.sliderWrapper}>
               <SliderComponent

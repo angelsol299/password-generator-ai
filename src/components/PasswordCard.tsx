@@ -11,7 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Card } from "./ui/Card";
 
-export const PasswordCard = () => {
+export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
   const rotationVal = useSharedValue(45);
   const [wasCopied, setWasCopied] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ export const PasswordCard = () => {
 
   return (
     <Card>
-      <Text style={styles.password}>{"8213jhsj032190][pqwe"}</Text>
+      <Text style={styles.password}>{passwordGen}</Text>
       <View style={styles.divider} />
       <View style={styles.iconsContainer}>
         <Pressable onPress={handleRefresh} style={styles.iconContainer}>
