@@ -55,14 +55,13 @@ export default function HomeScreen() {
 
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);
-
     setPasswordLength(wholeValue);
   };
 
   const generatePassword = () => {
     setPasswordGen(
       generatePasswordFunction({
-        length: 10,
+        length: passwordLength,
         ...conditionsValues,
       }),
     );
