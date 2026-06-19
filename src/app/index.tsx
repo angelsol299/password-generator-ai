@@ -37,7 +37,7 @@ export default function HomeScreen() {
     Inter_600SemiBold,
   });
 
-  const [passwordLength, setPasswordLength] = useState<number>(0);
+  const [passwordLength, setPasswordLength] = useState<number>(8);
   const [conditionsValues, setConditionsValues] =
     useState<ConditionsState>(initialState);
   const [passwordGen, setPasswordGen] = useState<string>("");
@@ -47,7 +47,7 @@ export default function HomeScreen() {
   useEffect(() => {
     setPasswordGen(
       generatePasswordFunction({
-        length: 10,
+        length: passwordLength,
         ...conditionsValues,
       }),
     );

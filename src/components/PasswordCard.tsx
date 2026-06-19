@@ -16,7 +16,6 @@ export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
   const [wasCopied, setWasCopied] = useState<boolean>(false);
 
   const handleRefresh = () => {
-    console.log("PRESSED");
     rotationVal.value = withTiming(rotationVal.value + 360, { duration: 300 });
   };
 

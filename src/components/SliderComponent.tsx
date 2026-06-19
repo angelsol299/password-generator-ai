@@ -11,7 +11,7 @@ export const SliderComponent = ({
   passwordLength: number;
 }) => {
   const progress = useSharedValue(0);
-  const min = useSharedValue(0);
+  const min = useSharedValue(6);
   const max = useSharedValue(30);
 
   return (
