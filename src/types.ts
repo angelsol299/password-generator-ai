@@ -12,3 +12,10 @@ export interface GeneratePasswordFunctionProps {
   numbers: boolean;
   symbols: boolean;
 }
+
+export enum Score {
+  WEAK = "Weak",
+  VERY_WEAK = "Very Weak",
+  STRONG = "Strong",
+  VERY_STRONG = "Very Strong",
+}

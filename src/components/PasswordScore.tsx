@@ -1,6 +1,6 @@
 import { usePasswordScore } from "@/hooks/usePasswordScore";
 import { Design } from "@/namespaces/Design";
-import { GeneratePasswordFunctionProps } from "@/types";
+import { GeneratePasswordFunctionProps, Score } from "@/types";
 import { StyleSheet, Text, View } from "react-native";
 
 export const PasswordScore = ({
@@ -10,17 +10,43 @@ export const PasswordScore = ({
 }) => {
   const { score, color } = usePasswordScore(passwordConditionsObj);
 
-  const lineStyles = [styles.line, { backgroundColor: color }];
+  const lineStyleVeryWeak = [styles.line, { backgroundColor: color }];
+  const lineStyleWeak = [
+    styles.line,
+    { backgroundColor: score === Score.VERY_WEAK ? Design.color.gray : color },
+  ];
+  const lineStyleStrong = [
+    styles.line,
+    {
+      backgroundColor:
+        score === Score.VERY_WEAK || score === Score.WEAK
+          ? Design.color.gray
+          : color,
+    },
+  ];
+  const lineStyleVeryStrong = [
+    styles.line,
+    {
+      backgroundColor:
+        score === Score.VERY_WEAK ||
+        score === Score.WEAK ||
+        score === Score.STRONG
+          ? Design.color.gray
+          : color,
+    },
+  ];
+
+  const texStyles = [styles.text, { color: color }];
 
   return (
     <View style={styles.container}>
       <View style={styles.containerLines}>
-        <View style={lineStyles} />
-        <View style={lineStyles} />
-        <View style={lineStyles} />
-        <View style={lineStyles} />
+        <View style={lineStyleVeryWeak} />
+        <View style={lineStyleWeak} />
+        <View style={lineStyleStrong} />
+        <View style={lineStyleVeryStrong} />
       </View>
-      <Text style={styles.text}>{score}</Text>
+      <Text style={texStyles}>{score}</Text>
     </View>
   );
 };

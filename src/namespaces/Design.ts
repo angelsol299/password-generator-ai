@@ -28,6 +28,8 @@ export namespace Design {
     red: "#880808",
     orange: "#FFAC1C",
     yellow: "#FDDA0D",
+    gold: "#FFD700",
+    emeraldGreen: "#50C878",
   };
 
   export const space = {

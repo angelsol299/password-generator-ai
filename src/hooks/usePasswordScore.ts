@@ -1,5 +1,5 @@
 import { Design } from "@/namespaces/Design";
-import { GeneratePasswordFunctionProps } from "@/types";
+import { GeneratePasswordFunctionProps, Score } from "@/types";
 
 export const usePasswordScore = (
   passwordConditionsObj: GeneratePasswordFunctionProps,
@@ -16,17 +16,34 @@ export const usePasswordScore = (
     switch (passwordConditionsLength) {
       case 1:
       case 2:
-        return { score: "Weak", color: Design.color.red };
+        return {
+          score: Score.VERY_WEAK,
+          color: Design.color.red,
+          label: "Weak",
+        };
       case 3:
-        return { score: "Very weak", color: Design.color.orange };
+        return {
+          score: Score.WEAK,
+          color: Design.color.orange,
+        };
       case 4:
-        return { score: "Strong", color: Design.color.yellow };
+        return {
+          score: Score.STRONG,
+          color: Design.color.emeraldGreen,
+        };
       case 5:
-        return { score: "Very strong", color: Design.color.green };
+        return {
+          score: Score.VERY_STRONG,
+          color: Design.color.green,
+        };
       default:
         return { score: "N/A", color: Design.color.lightBrown };
     }
   };
 
-  return { score: result().score, color: result().color };
+  return {
+    score: result().score,
+    color: result().color,
+    label: result().label,
+  };
 };
