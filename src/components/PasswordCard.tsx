@@ -11,12 +11,21 @@ import Animated, {
 } from "react-native-reanimated";
 import { Card } from "./ui/Card";
 
-export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
+interface PasswordCardProps {
+  generatedPassword: string;
+  refetchPassword: () => void;
+}
+
+export const PasswordCard = ({
+  generatedPassword,
+  refetchPassword,
+}: PasswordCardProps) => {
   const rotationVal = useSharedValue(45);
   const [wasCopied, setWasCopied] = useState<boolean>(false);
 
   const handleRefresh = () => {
     rotationVal.value = withTiming(rotationVal.value + 360, { duration: 300 });
+    refetchPassword();
   };
 
   const handleCopy = () => {
@@ -30,7 +39,7 @@ export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
     transform: [{ rotate: `${rotationVal.value}deg` }],
   }));
 
-  const smallerPasswordSize = passwordGen.length > 25;
+  const smallerPasswordSize = generatedPassword.length > 25;
 
   return (
     <Card>
@@ -42,7 +51,7 @@ export const PasswordCard = ({ passwordGen }: { passwordGen: string }) => {
               smallerPasswordSize && styles.largerPassword,
             ]}
           >
-            {passwordGen}
+            {generatedPassword}
           </Text>
         </View>
         <View style={styles.divider} />

@@ -4,3 +4,11 @@ export interface ConditionsState {
   numbers: boolean;
   symbols: boolean;
 }
+
+export interface GeneratePasswordFunctionProps {
+  length: number;
+  upperCase: boolean;
+  lowerCase?: boolean;
+  numbers: boolean;
+  symbols: boolean;
+}

@@ -17,10 +17,10 @@ import { PasswordCard } from "@/components/PasswordCard";
 import { PasswordConditionsCard } from "@/components/PasswordConditionsCard";
 import { PasswordScore } from "@/components/PasswordScore";
 import { SliderComponent } from "@/components/SliderComponent";
-import { generatePasswordFunction } from "@/lib/generatePasswordFunction";
-import { ConditionsState } from "@/types";
+import { usePasswordGen } from "@/hooks/usePasswordGen";
+import { ConditionsState, GeneratePasswordFunctionProps } from "@/types";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Button } from "../components/ui/Button";
 
@@ -40,32 +40,32 @@ export default function HomeScreen() {
   const [passwordLength, setPasswordLength] = useState<number>(8);
   const [conditionsValues, setConditionsValues] =
     useState<ConditionsState>(initialState);
-  const [passwordGen, setPasswordGen] = useState<string>("");
+  // const [passwordGen, setPasswordGen] = useState<string>("");
+  const passwordConditionsObj: GeneratePasswordFunctionProps = {
+    length: passwordLength,
+    ...conditionsValues,
+  };
+  const { refetchPassword, generatedPassword } = usePasswordGen(
+    passwordConditionsObj,
+  );
 
   const insets = useSafeAreaInsets();
 
-  useEffect(() => {
-    setPasswordGen(
-      generatePasswordFunction({
-        length: passwordLength,
-        ...conditionsValues,
-      }),
-    );
-  }, []);
+  // useEffect(() => {
+  //   setPasswordGen(
+  //     generatePasswordFunction({
+  //       length: passwordLength,
+  //       ...conditionsValues,
+  //     }),
+  //   );
+  // }, []);
 
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);
     setPasswordLength(wholeValue);
   };
 
-  const generatePassword = () => {
-    setPasswordGen(
-      generatePasswordFunction({
-        length: passwordLength,
-        ...conditionsValues,
-      }),
-    );
-  };
+  const generatePassword = () => refetchPassword();
 
   const isButtonDisabled = (conditionsValues: ConditionsState) => {
     return Object.values(conditionsValues).every((item) => !item);
@@ -85,7 +85,10 @@ export default function HomeScreen() {
           >
             <Text style={styles.subTitle}>Secure Generator</Text>
             <Text style={styles.title}>Password</Text>
-            <PasswordCard passwordGen={passwordGen} />
+            <PasswordCard
+              generatedPassword={generatedPassword}
+              refetchPassword={refetchPassword}
+            />
             <PasswordScore score={"Excellent"} />
             <View style={styles.sliderWrapper}>
               <SliderComponent
