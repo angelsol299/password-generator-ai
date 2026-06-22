@@ -18,8 +18,6 @@ export const PasswordScore = ({
 
   const texStyles = [styles.text, { color: color }];
 
-  console.log(veryWeak);
-
   return (
     <View style={styles.container}>
       <View style={styles.containerLines}>

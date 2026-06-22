@@ -4,13 +4,11 @@ import { GeneratePasswordFunctionProps, Score } from "@/types";
 export const usePasswordScore = (
   passwordConditionsObj: GeneratePasswordFunctionProps,
 ) => {
-  for (let key in passwordConditionsObj) {
-    if (!passwordConditionsObj[key]) {
-      delete passwordConditionsObj[key];
-    }
-  }
+  const conditionArr = Object.values(passwordConditionsObj).filter(
+    (cond) => cond,
+  );
 
-  const passwordConditionsLength = Object.keys(passwordConditionsObj).length;
+  const passwordConditionsLength = conditionArr.length;
 
   const result = (): {
     score: Score;
