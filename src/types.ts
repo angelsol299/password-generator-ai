@@ -18,4 +18,5 @@ export enum Score {
   VERY_WEAK = "Very Weak",
   STRONG = "Strong",
   VERY_STRONG = "Very Strong",
+  N_A = "N/A",
 }

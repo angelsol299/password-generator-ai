@@ -12,14 +12,16 @@ export const usePasswordScore = (
 
   const passwordConditionsLength = Object.keys(passwordConditionsObj).length;
 
-  const result = () => {
+  const result = (): {
+    score: Score;
+    color: (typeof Design.color)[keyof typeof Design.color];
+  } => {
     switch (passwordConditionsLength) {
       case 1:
       case 2:
         return {
           score: Score.VERY_WEAK,
           color: Design.color.red,
-          label: "Weak",
         };
       case 3:
         return {
@@ -37,13 +39,12 @@ export const usePasswordScore = (
           color: Design.color.green,
         };
       default:
-        return { score: "N/A", color: Design.color.lightBrown };
+        return { score: Score.N_A, color: Design.color.lightBrown };
     }
   };
 
   return {
     score: result().score,
     color: result().color,
-    label: result().label,
   };
 };
