@@ -1,9 +1,9 @@
 interface GeneratePasswordFunctionProps {
   length: number;
-  upperCase: boolean;
+  upperCase?: boolean;
   lowerCase?: boolean;
-  numbers: boolean;
-  symbols: boolean;
+  numbers?: boolean;
+  symbols?: boolean;
 }
 
 export const generatePasswordFunction = ({

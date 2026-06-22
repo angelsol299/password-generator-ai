@@ -1,4 +1,14 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(node -e \"const p=require\\('jest-expo/jest-preset'\\); console.log\\('testMatch:', JSON.stringify\\(p.testMatch\\)\\); console.log\\('testRegex:', JSON.stringify\\(p.testRegex\\)\\)\")",
+      "Bash(npx jest *)",
+      "Bash(node -e \"console.log\\(require\\('react-native-reanimated/package.json'\\).version\\)\")",
+      "Bash(watchman version *)",
+      "Bash(node -e \"const p=require\\('jest-expo/jest-preset'\\); console.log\\('setupFiles:',JSON.stringify\\(p.setupFiles\\)\\); console.log\\('setupFilesAfterEnv:',JSON.stringify\\(p.setupFilesAfterEnv\\)\\); console.log\\('transformIgnore:',JSON.stringify\\(p.transformIgnorePatterns\\)\\)\")"
+    ]
+  },
   "enabledPlugins": {
     "expo@claude-plugins-official": true
   }
