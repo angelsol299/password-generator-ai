@@ -18,15 +18,20 @@ export const generatePasswordFunction = ({
   const numbersStr = "0123456789";
   const symbolsStr = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-  if (length < 6) length = 6;
+  const passwordLength = Math.max(length, 6);
+
+  if (!lowerCase && !upperCase && !numbers && !symbols) {
+    lowerCase = true;
+  }
 
   let pool = "";
   const password = [];
 
-  const getRandomChar = (str: string) => Math.floor(Math.random() * str.length);
+  const getRandomCharIndex = (str: string) =>
+    Math.floor(Math.random() * str.length);
 
   const handlePassword = (str: string) => {
-    password.push(str[getRandomChar(str)]);
+    password.push(str[getRandomCharIndex(str)]);
     pool += str;
   };
 
@@ -43,16 +48,13 @@ export const generatePasswordFunction = ({
     }
   });
 
-  for (let i = password.length; i < length; i++) {
-    password.push(pool[getRandomChar(pool)]);
+  for (let i = password.length; i < passwordLength; i++) {
+    password.push(pool[getRandomCharIndex(pool)]);
   }
 
-  let i = 0;
-
-  while (i < password.length - 1) {
+  for (let i = password.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [password[i], password[j]] = [password[j], password[i]];
-    i++;
   }
 
   return password.join("");
