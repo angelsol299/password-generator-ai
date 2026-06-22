@@ -2,6 +2,7 @@ import { Design } from "@/namespaces/Design";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
@@ -22,18 +23,14 @@ export const PasswordCard = ({
 }: PasswordCardProps) => {
   const rotationVal = useSharedValue(45);
   const [wasCopied, setWasCopied] = useState<boolean>(false);
+  const { icon, copyToClipboard } = useCopyToClipboard(generatedPassword);
 
   const handleRefresh = () => {
     rotationVal.value = withTiming(rotationVal.value + 360, { duration: 300 });
     refetchPassword();
   };
 
-  const handleCopy = () => {
-    setWasCopied((prev) => !prev);
-    setTimeout(() => {
-      setWasCopied((prev) => !prev);
-    }, 700);
-  };
+  const handleCopy = () => copyToClipboard();
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotationVal.value}deg` }],
@@ -66,11 +63,7 @@ export const PasswordCard = ({
             </Animated.View>
           </Pressable>
           <Pressable onPress={handleCopy} style={styles.iconContainer}>
-            {wasCopied ? (
-              <Feather name="check" size={18} color="green" />
-            ) : (
-              <Feather name="copy" size={18} color={Design.color.lightBrown} />
-            )}
+            <Feather name={icon.name} size={18} color={icon.color} />
           </Pressable>
         </View>
       </View>
