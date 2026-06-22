@@ -23,24 +23,23 @@ export const generatePasswordFunction = ({
 
   const getRandomChar = (str: string) => Math.floor(Math.random() * str.length);
 
-  if (lowerCase) {
-    password.push(lowerCaseStr[getRandomChar(lowerCaseStr)]);
-    pool += lowerCaseStr;
-  }
-  if (upperCase) {
-    password.push(upperCaseStr[getRandomChar(upperCaseStr)]);
-    pool += upperCaseStr;
-  }
+  const handlePassword = (str: string) => {
+    password.push(str[getRandomChar(str)]);
+    pool += str;
+  };
 
-  if (numbers) {
-    password.push(numbersStr[getRandomChar(numbersStr)]);
-    pool += numbersStr;
-  }
+  const conditions = [
+    { str: lowerCaseStr, exists: lowerCase },
+    { str: upperCaseStr, exists: upperCase },
+    { str: numbersStr, exists: numbers },
+    { str: symbolsStr, exists: symbols },
+  ];
 
-  if (symbols) {
-    password.push(symbolsStr[getRandomChar(symbolsStr)]);
-    pool += symbolsStr;
-  }
+  conditions.forEach((item) => {
+    if (item.exists) {
+      handlePassword(item.str);
+    }
+  });
 
   for (let i = password.length; i < length; i++) {
     password.push(pool[getRandomChar(pool)]);
