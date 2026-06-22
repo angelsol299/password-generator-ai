@@ -17,7 +17,7 @@ import { PasswordCard } from "@/components/PasswordCard";
 import { PasswordConditionsCard } from "@/components/PasswordConditionsCard";
 import { PasswordScore } from "@/components/PasswordScore";
 import { SliderComponent } from "@/components/SliderComponent";
-import { usePasswordGen } from "@/hooks/usePasswordGen";
+import { usePasswordGenerator } from "@/hooks/usePasswordGenerator";
 import { ConditionsState, GeneratePasswordFunctionProps } from "@/types";
 import { Inter_600SemiBold } from "@expo-google-fonts/inter";
 import { useState } from "react";
@@ -40,25 +40,16 @@ export default function HomeScreen() {
   const [passwordLength, setPasswordLength] = useState<number>(8);
   const [conditionsValues, setConditionsValues] =
     useState<ConditionsState>(initialState);
-  // const [passwordGen, setPasswordGen] = useState<string>("");
+
   const passwordConditionsObj: GeneratePasswordFunctionProps = {
     length: passwordLength,
     ...conditionsValues,
   };
-  const { refetchPassword, generatedPassword } = usePasswordGen(
+  const { refetchPassword, generatedPassword } = usePasswordGenerator(
     passwordConditionsObj,
   );
 
   const insets = useSafeAreaInsets();
-
-  // useEffect(() => {
-  //   setPasswordGen(
-  //     generatePasswordFunction({
-  //       length: passwordLength,
-  //       ...conditionsValues,
-  //     }),
-  //   );
-  // }, []);
 
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);

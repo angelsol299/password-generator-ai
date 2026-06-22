@@ -2,7 +2,7 @@ import { generatePasswordFunction } from "@/lib/generatePasswordFunction";
 import { GeneratePasswordFunctionProps } from "@/types";
 import { useMemo, useState } from "react";
 
-export const usePasswordGen = ({
+export const usePasswordGenerator = ({
   length,
   lowerCase,
   upperCase,
