@@ -80,7 +80,7 @@ export default function HomeScreen() {
               generatedPassword={generatedPassword}
               refetchPassword={refetchPassword}
             />
-            <PasswordScore score={"Excellent"} />
+            <PasswordScore passwordConditionsObj={passwordConditionsObj} />
             <View style={styles.sliderWrapper}>
               <SliderComponent
                 passwordLengthHandler={passwordLengthHandler}

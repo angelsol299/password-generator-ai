@@ -1,14 +1,24 @@
+import { usePasswordScore } from "@/hooks/usePasswordScore";
 import { Design } from "@/namespaces/Design";
+import { GeneratePasswordFunctionProps } from "@/types";
 import { StyleSheet, Text, View } from "react-native";
 
-export const PasswordScore = ({ score }: { score: string }) => {
+export const PasswordScore = ({
+  passwordConditionsObj,
+}: {
+  passwordConditionsObj: GeneratePasswordFunctionProps;
+}) => {
+  const { score, color } = usePasswordScore(passwordConditionsObj);
+
+  const lineStyles = [styles.line, { backgroundColor: color }];
+
   return (
     <View style={styles.container}>
       <View style={styles.containerLines}>
-        <View style={styles.line} />
-        <View style={styles.line} />
-        <View style={styles.line} />
-        <View style={styles.line} />
+        <View style={lineStyles} />
+        <View style={lineStyles} />
+        <View style={lineStyles} />
+        <View style={lineStyles} />
       </View>
       <Text style={styles.text}>{score}</Text>
     </View>
