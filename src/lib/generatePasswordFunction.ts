@@ -1,5 +1,5 @@
 interface GeneratePasswordFunctionProps {
-  length: number;
+  length?: number;
   upperCase?: boolean;
   lowerCase?: boolean;
   numbers?: boolean;
@@ -17,6 +17,8 @@ export const generatePasswordFunction = ({
   const upperCaseStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbersStr = "0123456789";
   const symbolsStr = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+  if (length < 6) length = 6;
 
   let pool = "";
   const password = [];
