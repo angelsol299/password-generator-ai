@@ -1,21 +1,16 @@
+import { passwordStrength } from "@/lib/passwordStrengthhelper";
 import { Design } from "@/namespaces/Design";
 import { GeneratePasswordFunctionProps, Score } from "@/types";
 
 export const usePasswordScore = (
   passwordConditionsObj: GeneratePasswordFunctionProps,
 ) => {
-  const conditionArr = Object.values(passwordConditionsObj).filter(
-    (cond) => cond,
-  );
-
-  const passwordConditionsLength = conditionArr.length;
-
+  const strength = passwordStrength(passwordConditionsObj);
   const result = (): {
     score: Score;
     color: (typeof Design.color)[keyof typeof Design.color];
   } => {
-    switch (passwordConditionsLength) {
-      case 1:
+    switch (strength) {
       case 2:
         return {
           score: Score.VERY_WEAK,
