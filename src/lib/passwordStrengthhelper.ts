@@ -7,8 +7,10 @@ export const passwordStrength = (
     (cond) => cond,
   );
 
+  const minLengthStrong = passwordConditionsObj.length > 15;
+
   if (
-    passwordConditionsObj.length > 15 &&
+    minLengthStrong &&
     passwordConditionsObj.lowerCase &&
     passwordConditionsObj.numbers &&
     passwordConditionsObj.upperCase &&
@@ -17,11 +19,11 @@ export const passwordStrength = (
     return 4;
   }
 
-  if (conditionArr.length === 5) {
+  if (conditionArr.length === 5 && minLengthStrong) {
     return 5;
   }
 
-  if (passwordConditionsObj.symbols && passwordConditionsObj.length > 10) {
+  if (passwordConditionsObj.symbols && minLengthStrong) {
     return 5;
   }
 
@@ -38,7 +40,7 @@ export const passwordStrength = (
   }
 
   if (
-    passwordConditionsObj.length > 15 &&
+    minLengthStrong &&
     (passwordConditionsObj.lowerCase ||
       passwordConditionsObj.numbers ||
       passwordConditionsObj.upperCase)
