@@ -23,6 +23,10 @@ export const passwordStrength = (
     return 5;
   }
 
+  if (passwordConditionsObj.symbols && passwordConditionsObj.length < 10) {
+    return 3;
+  }
+
   if (passwordConditionsObj.symbols && minLengthStrong) {
     return 5;
   }
@@ -32,11 +36,20 @@ export const passwordStrength = (
   }
 
   if (
+    ((passwordConditionsObj.lowerCase && passwordConditionsObj.numbers) ||
+      (passwordConditionsObj.numbers && passwordConditionsObj.upperCase) ||
+      (passwordConditionsObj.upperCase && passwordConditionsObj.lowerCase)) &&
+    minLengthStrong
+  ) {
+    return 3;
+  }
+
+  if (
     (passwordConditionsObj.lowerCase && passwordConditionsObj.numbers) ||
     (passwordConditionsObj.numbers && passwordConditionsObj.upperCase) ||
     (passwordConditionsObj.upperCase && passwordConditionsObj.lowerCase)
   ) {
-    return 3;
+    return 2;
   }
 
   if (
