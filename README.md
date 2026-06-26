@@ -1,57 +1,45 @@
-# Welcome to your Expo app 👋
+# Modern Password Generator
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform (iOS, Android, web) password generator built with [Expo](https://expo.dev) and [expo-router](https://docs.expo.dev/router/introduction/). Generate strong passwords with configurable length and character sets, see a live strength score, and copy to the clipboard.
 
 ## Get started
 
 1. Install dependencies
 
    ```bash
-   npm install
+   yarn install
    ```
 
 2. Start the app
 
    ```bash
-   npx expo start
+   yarn start
    ```
 
-In the output, you'll find options to open the app in a
+   Then open it in the [Expo Go](https://expo.dev/go) app, an [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/), an [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/), or the web with `yarn web`.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Scripts
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| Command        | Description                          |
+| -------------- | ------------------------------------ |
+| `yarn start`   | Start the Expo dev server            |
+| `yarn ios`     | Build and run on iOS                 |
+| `yarn android` | Build and run on Android             |
+| `yarn web`     | Run in the browser                   |
+| `yarn test`    | Run the Jest test suite (watch mode) |
+| `yarn lint`    | Run Expo lint                        |
 
-## Get a fresh project
+## Project structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+  app/         # expo-router routes (file-based routing)
+  components/  # UI components
+  hooks/       # password generation, scoring, clipboard, theming
+  lib/         # core password generation logic (+ tests)
+  constants/   # theme tokens
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## License
 
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# password-generator-ai
+See [LICENSE](./LICENSE).
