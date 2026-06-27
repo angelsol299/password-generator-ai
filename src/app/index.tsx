@@ -1,7 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { ThemedView } from "@/components/themed-view";
 import { MaxContentWidth, Spacing } from "@/constants/theme";
 import { Design } from "@/namespaces/Design";
 
@@ -60,7 +59,7 @@ export default function HomeScreen() {
   if (!fontsLoaded) return null;
   return (
     <GestureHandlerRootView>
-      <ThemedView style={styles.container}>
+      <View style={styles.container}>
         <SafeAreaView
           style={styles.safeArea}
           edges={["top", "left", "right", "bottom"]}
@@ -99,7 +98,7 @@ export default function HomeScreen() {
             disabled={isButtonDisabled(conditionsValues)}
           />
         </SafeAreaView>
-      </ThemedView>
+      </View>
     </GestureHandlerRootView>
   );
 }
