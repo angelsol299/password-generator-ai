@@ -11,6 +11,8 @@ export const usePasswordGenerator = ({
 }: GeneratePasswordFunctionProps) => {
   const [refetch, setRefetch] = useState<boolean>(false);
 
+  const MAX_CHARACTERS = 94;
+
   const generatedPassword = useMemo(() => {
     return generatePasswordFunction({
       length,
@@ -21,7 +23,9 @@ export const usePasswordGenerator = ({
     });
   }, [refetch]);
 
+  const bits = Math.floor(generatedPassword.length * Math.log2(MAX_CHARACTERS));
+
   const refetchPassword = () => setRefetch((prev) => !prev);
 
-  return { generatedPassword, refetchPassword };
+  return { generatedPassword, refetchPassword, bits };
 };

@@ -5,13 +5,17 @@ import { GeneratePasswordFunctionProps, Score } from "@/types";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+interface PasswordScoreProps {
+  passwordConditionsObj: GeneratePasswordFunctionProps;
+  generatedPassword: string;
+  bits: number;
+}
+
 export const PasswordScore = ({
   passwordConditionsObj,
   generatedPassword,
-}: {
-  passwordConditionsObj: GeneratePasswordFunctionProps;
-  generatedPassword: string;
-}) => {
+  bits,
+}: PasswordScoreProps) => {
   const [strength, setStrength] = useState({
     veryWeak: {},
     weak: {},
@@ -38,8 +42,6 @@ export const PasswordScore = ({
     }
   }, [generatedPassword]);
 
-  console.log({ strength });
-
   const texStyles = [styles.text, { color: textStyles.color }];
 
   return (
@@ -52,7 +54,7 @@ export const PasswordScore = ({
       </View>
       <View style={styles.textContainer}>
         <Text style={texStyles}>{textStyles.score}</Text>
-        <Text style={styles.bits}>{"102 bits"}</Text>
+        <Text style={styles.bits}>{`${bits} bits`}</Text>
       </View>
     </View>
   );

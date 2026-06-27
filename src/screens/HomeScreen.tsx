@@ -27,7 +27,7 @@ export const HomeScreen = () => {
     length: passwordLength,
     ...conditionsValues,
   };
-  const { refetchPassword, generatedPassword } = usePasswordGenerator(
+  const { refetchPassword, generatedPassword, bits } = usePasswordGenerator(
     passwordConditionsObj,
   );
 
@@ -62,6 +62,7 @@ export const HomeScreen = () => {
             <PasswordScore
               passwordConditionsObj={passwordConditionsObj}
               generatedPassword={generatedPassword}
+              bits={bits}
             />
             <View style={styles.sliderWrapper}>
               <SliderComponent
