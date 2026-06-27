@@ -1,8 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedView } from "@/components/themed-view";
 import { MaxContentWidth, Spacing } from "@/constants/theme";
@@ -49,8 +46,6 @@ export default function HomeScreen() {
     passwordConditionsObj,
   );
 
-  const insets = useSafeAreaInsets();
-
   const passwordLengthHandler = (value: number) => {
     const wholeValue = Math.floor(value);
     setPasswordLength(wholeValue);
@@ -66,40 +61,43 @@ export default function HomeScreen() {
   return (
     <GestureHandlerRootView>
       <ThemedView style={styles.container}>
-        <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+        <SafeAreaView
+          style={styles.safeArea}
+          edges={["top", "left", "right", "bottom"]}
+        >
           <ScrollView
-            contentContainerStyle={[
-              styles.scrollViewContainer,
-              { paddingBottom: insets.bottom + Design.space.small },
-            ]}
+            contentContainerStyle={styles.scrollViewContainer}
             showsVerticalScrollIndicator={false}
           >
-            <Text style={styles.subTitle}>Secure Generator</Text>
-            <Text style={styles.title}>Password</Text>
-            <PasswordCard
-              generatedPassword={generatedPassword}
-              refetchPassword={refetchPassword}
-            />
-            <PasswordScore
-              passwordConditionsObj={passwordConditionsObj}
-              generatedPassword={generatedPassword}
-            />
-            <View style={styles.sliderWrapper}>
-              <SliderComponent
-                passwordLengthHandler={passwordLengthHandler}
-                passwordLength={passwordLength}
+            <View style={styles.wrapper}>
+              <Text style={styles.subTitle}>Secure Generator</Text>
+              <Text style={styles.title}>Password</Text>
+              <PasswordCard
+                generatedPassword={generatedPassword}
+                refetchPassword={refetchPassword}
+              />
+              <PasswordScore
+                passwordConditionsObj={passwordConditionsObj}
+                generatedPassword={generatedPassword}
+              />
+              <View style={styles.sliderWrapper}>
+                <SliderComponent
+                  passwordLengthHandler={passwordLengthHandler}
+                  passwordLength={passwordLength}
+                />
+              </View>
+              <PasswordConditionsCard
+                conditionsValues={conditionsValues}
+                setConditionsValues={setConditionsValues}
               />
             </View>
-            <PasswordConditionsCard
-              conditionsValues={conditionsValues}
-              setConditionsValues={setConditionsValues}
-            />
-            <Button
-              onPress={generatePassword}
-              text={"Generate new password"}
-              disabled={isButtonDisabled(conditionsValues)}
-            />
           </ScrollView>
+
+          <Button
+            onPress={generatePassword}
+            text={"Generate new password"}
+            disabled={isButtonDisabled(conditionsValues)}
+          />
         </SafeAreaView>
       </ThemedView>
     </GestureHandlerRootView>
@@ -134,6 +132,8 @@ const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flexGrow: 1,
+  },
+  wrapper: {
     gap: Design.space.medium,
   },
   sliderWrapper: {
