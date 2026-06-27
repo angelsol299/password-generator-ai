@@ -50,7 +50,10 @@ export const PasswordScore = ({
         <View style={strength.strong} />
         <View style={strength.veryStrong} />
       </View>
-      <Text style={texStyles}>{textStyles.score}</Text>
+      <View style={styles.textContainer}>
+        <Text style={texStyles}>{textStyles.score}</Text>
+        <Text style={styles.bits}>{"102 bits"}</Text>
+      </View>
     </View>
   );
 };
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Design.space.small,
     flexDirection: "column",
-    gap: Design.space.xSmall,
+    gap: Design.space.medium,
   },
   containerLines: { flexDirection: "row", gap: Design.space.xSmall },
   line: {
@@ -71,5 +74,14 @@ const styles = StyleSheet.create({
   text: {
     color: Design.color.green,
     fontFamily: Design.fontFamily.interSemiBold,
+  },
+  bits: {
+    color: Design.color.darkGold,
+    fontFamily: Design.fontFamily.splineRegular,
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
