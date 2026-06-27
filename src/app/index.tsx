@@ -1,7 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { MaxContentWidth, Spacing } from "@/constants/theme";
 import { Design } from "@/namespaces/Design";
 
 import {
@@ -111,9 +110,8 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
+    paddingHorizontal: Design.space.medium,
     gap: Design.space.small,
-    maxWidth: MaxContentWidth,
   },
   subTitle: {
     fontFamily: Design.fontFamily.splineRegular,
