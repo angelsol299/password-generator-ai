@@ -4,11 +4,11 @@
     "slug": "modern-password-generator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/password-icon.png",
     "scheme": "modernpasswordgenerator",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/images/icon.png",
+      "icon": "./assets/images/password-icon.png",
       "bundleIdentifier": "com.anonymous.modern-password-generator"
     },
     "android": {
@@ -29,11 +29,10 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
-          }
+          "image": "./assets/images/splash-screen.png",
+          "enableFullScreenImage_legacy": true,
+          "resizeMode": "cover",
+          "backgroundColor": "#208AEF"
         }
       ],
       "expo-font"
