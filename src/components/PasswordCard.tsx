@@ -3,8 +3,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
-import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useToast } from "react-native-pretty-toast";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -22,8 +22,9 @@ export const PasswordCard = ({
   generatedPassword,
   refetchPassword,
 }: PasswordCardProps) => {
+  const toast = useToast();
   const rotationVal = useSharedValue(45);
-  const [wasCopied, setWasCopied] = useState<boolean>(false);
+
   const { icon, copyToClipboard } = useCopyToClipboard(generatedPassword);
 
   const handleRefresh = () => {
@@ -31,7 +32,16 @@ export const PasswordCard = ({
     refetchPassword();
   };
 
-  const handleCopy = () => copyToClipboard();
+  const handleCopy = () => {
+    copyToClipboard();
+
+    toast.show({
+      icon: "checkmark.seal.fill",
+      title: "Password copied!",
+      message: "Your password has been copied to the Clipboard successfully",
+      duration: 2500,
+    });
+  };
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotationVal.value}deg` }],

@@ -9,7 +9,10 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/images/password-icon.png",
-      "bundleIdentifier": "com.anonymous.modern-password-generator"
+      "bundleIdentifier": "com.anonymous.modern-password-generator",
+      "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": true
+      }
     },
     "android": {
       "adaptiveIcon": {
