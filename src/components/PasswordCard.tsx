@@ -36,10 +36,9 @@ export const PasswordCard = ({
     copyToClipboard();
 
     toast.show({
-      icon: "checkmark.seal.fill",
-      title: "Password copied!",
-      message: "Your password has been copied to the Clipboard successfully",
-      duration: 2500,
+      icon: "checkmark.circle.fill",
+      title: "Password copied successfully!",
+      duration: 1000,
     });
   };
 

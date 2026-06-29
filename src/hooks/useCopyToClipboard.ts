@@ -16,11 +16,15 @@ export const useCopyToClipboard = (generatedPassword: string) => {
   const [icon, setIcon] = useState<IconProps>(iconInitialState);
 
   const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(generatedPassword);
-    setIcon({ name: "check", color: Design.color.green });
-    setTimeout(() => {
-      setIcon(iconInitialState);
-    }, 700);
+    try {
+      await Clipboard.setStringAsync(generatedPassword);
+      setIcon({ name: "check", color: Design.color.green });
+      setTimeout(() => {
+        setIcon(iconInitialState);
+      }, 1000);
+    } catch (e) {
+      console.log({ e });
+    }
   };
 
   return { icon, copyToClipboard };
