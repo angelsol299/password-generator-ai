@@ -10,6 +10,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { ColoredPassword } from "./ColoredPassword";
 import { Card } from "./ui/Card";
 
 interface PasswordCardProps {
@@ -48,7 +49,7 @@ export const PasswordCard = ({
               smallerPasswordSize && styles.largerPassword,
             ]}
           >
-            {generatedPassword}
+            <ColoredPassword generatedPassword={generatedPassword} />
           </Text>
         </View>
         <View style={styles.divider} />
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
   password: {
     fontSize: Design.fontSize.large,
     marginBottom: 42,
+    fontFamily: Design.fontFamily.interSemiBold,
   },
   iconContainer: {
     backgroundColor: "#f9f9f9",
