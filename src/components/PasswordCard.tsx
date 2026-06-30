@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   },
   passwordContainer: {
     flex: 1,
+    flexDirection: "row",
   },
   container: {
     height: 130,
