@@ -120,5 +120,6 @@ const styles = StyleSheet.create({
   },
   sliderWrapper: {
     paddingBottom: Design.space.small,
+    overflow: "visible",
   },
 });

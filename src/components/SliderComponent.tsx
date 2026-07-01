@@ -35,8 +35,8 @@ export const SliderComponent = ({
         renderThumb={() => (
           <View
             style={{
-              width: 30,
-              height: 30,
+              width: 27,
+              height: 27,
               borderRadius: 15,
               backgroundColor: "white",
               shadowColor: "#000",
@@ -44,6 +44,7 @@ export const SliderComponent = ({
               shadowOpacity: 0.3,
               shadowRadius: 4,
               elevation: 4,
+              right: 1,
             }}
           />
         )}
